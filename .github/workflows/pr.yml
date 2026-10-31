@@ -33,7 +33,7 @@ jobs:
 
       - name: Get Changed Files and Output JSON
         id: changed_files
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v46
         with:
           dir_names: true
           json: true
