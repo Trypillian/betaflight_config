@@ -33,9 +33,13 @@
 //   - barometric pressure derived from altitude (plugin doesn't supply pressure)
 #define ENABLE_GAZEBO_BRIDGE    1
 
-// Gazebo Iris model uses "props in" motor directions (M0/M3=CW, M1/M2=CCW),
-// which is the "reversed" configuration in BF's convention.
-#define YAW_MOTORS_REVERSED     1
+// The sim models (iris, quad10) carry the standard QuadX directions, M0/M3 cw
+// and M1/M2 ccw, so yaw is not reversed. This was 1 for as long as the bridge
+// handed Betaflight an inverted yaw rate: the two cancelled, the flight
+// controller stayed self-consistent, and only the pilot's stick was backwards.
+// The bridge now delivers yaw correctly (see sitl_gyro.h), so this must be 0 --
+// setting one without the other makes heading hold diverge.
+#define YAW_MOTORS_REVERSED     0
 
 // Flight plan / GPX waypoint integration with the Gazebo world
 #define USE_FLIGHT_PLAN
